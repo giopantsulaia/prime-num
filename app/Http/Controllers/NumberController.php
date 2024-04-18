@@ -11,7 +11,7 @@ class NumberController extends Controller
 {
     public function submit(PrimeNumbersRequest $request): JsonResponse
     {
-        FindPrimeNumbers::dispatch($request->validated());
+        FindPrimeNumbers::dispatch($request->numbers);
 
         return response()->json(['success' => true]);
     }
