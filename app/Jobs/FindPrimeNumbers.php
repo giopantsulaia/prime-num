@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use Carbon\Carbon;
 use DateTime;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -32,16 +33,15 @@ class FindPrimeNumbers implements ShouldQueue
     {
         foreach($this->numbers as $number) {
             if($this->isPrimeNum($number)) {
-                $datetime = Carbon::now();
-                Log::channel('prime')->info("$number: number found at $datetime");
+                Log::channel('prime')->info($number . ": number found at ". Carbon::now());
             }
         }
     }
 
-    private function isPrimeNum(int $number): bool
+    private function isPrimeNum(int|float $number): bool
     {
         if ($number <= 1) {
-            return true;
+            return false;
         }
         for ($i = 2; $i * $i <= $number; $i++) {
             if ($number % $i == 0) {

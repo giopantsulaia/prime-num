@@ -14,7 +14,7 @@ class PrimeNumbersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'numbers' => 'required|array',
+            'numbers' => 'required|array|max:10000',
             'numbers.*' => 'numeric'
         ];
     }
