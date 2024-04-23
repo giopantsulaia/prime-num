@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PrimeNumbersRequest;
-use App\Jobs\FindPrimeNumbers;
+use App\Jobs\ProcessNumbers;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class NumberController extends Controller
 {
     public function submit(PrimeNumbersRequest $request): JsonResponse
     {
-        FindPrimeNumbers::dispatch($request->numbers);
+        ProcessNumbers::dispatch($request->numbers);
 
         return response()->json(['success' => true]);
     }
